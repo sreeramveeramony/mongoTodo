@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Vue To-Do App</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>Vue + MongoDB To-Do List</h1>
+
+      <div class="input-area">
+        <input type="text" v-model="newTask" placeholder="Enter task" @keyup.enter="addTask">
+        <button @click="addTask">Add</button>
+      </div>
+
+      <ul>
+        <li v-for="task in tasks" :key="task._id" :class="{completed: task.completed}" @click="toggleComplete(task)">
+          {{ task.text }}
+          <button @click.stop="deleteTask(task._id)">Delete</button>
+        </li>
+      </ul>
+
+      <footer>Made with Vue & MongoDB 🚀</footer>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
